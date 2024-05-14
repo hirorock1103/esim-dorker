@@ -33,6 +33,13 @@ RUN \
 	php-opcache --nogpgcheck \
 	php-bcmath
 
+# PHP GD拡張とその依存パッケージをインストール 
+RUN yum -y install php-gd --nogpgcheck
+
+# Imagickの依存関係とImagick自体のインストール
+RUN yum -y install ImageMagick ImageMagick-devel
+RUN yum -y install php-pecl-imagick --nogpgcheck
+RUN echo "extension=imagick.so" > /etc/php.d/20-imagick.ini
 
 
 # Node.js setup
