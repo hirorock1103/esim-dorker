@@ -1,5 +1,8 @@
 FROM centos:centos7
 
+RUN sed -i 's|^mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-Base.repo && \     
+    sed -i 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Base.repo 
+
 # update yum
 RUN yum -y update
 RUN yum -y install yum-utils
